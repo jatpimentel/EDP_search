@@ -8,9 +8,11 @@ const students = []
 
 function submitData() {
     const student = {
-        name: studentForm['first_name'].value,
+        firsname: studentForm['first_name'].value,
+        last_name: studentForm['last_name'].value,
         gender: studentForm['gender'].value,
-        course: studentForm['program'].value
+        age:
+
     }
 
     students.push(student)
