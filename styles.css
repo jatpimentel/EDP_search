@@ -1,0 +1,13 @@
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}

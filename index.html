@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <form
+      onsubmit="submitData();return false;"
+      id="student-form"
+      class="px-8 flex flex-col gap-4 mb-8"
+    >
+      <div>
+        <label class="text-xl text-red-500">First Name</label>
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label class="text-xl text-red-500">Last Name</label>
+        <input
+          type="text"
+          id="last_name"
+          name="last_name"
+          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label class="text-xl text-red-500">Gender</label>
+        </div>
+        <div class="col">
+          <div>
+            <input
+              type="radio"
+              id="male"
+              name="program"
+              value="Male"
+              class="w-4 h-4"
+            />
+            <label for="male" class="text-lg">Male</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="female"
+              name="program"
+              value="Female"
+              class="w-4 h-4"
+            />
+            <label for="female" class="text-lg">Female</label>
+      
+      </div>
+        </div>
+    <div>
+        <label class="text-xl text-red-500">Age (Range)</label>
+        <input
+          type="text"
+          id="age_first"
+          name="age_first"
+          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
+        />
+        to
+        <input
+          type="text"
+          id="age_last"
+          name="age_last"
+          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
+        />
+      </div>
+
+      
+      
+
+    <p>You selected: <span id="data-selected"></span></p>
+    <input
+      type="text"
+      placeholder="Search something..."
+      id="student-search"
+      class="border-2 rounded-lg bg-gray-100 p-2"
+      oninput="filterStudents()"
+    />
+
+    <div class="flex justify-center">
+      <table
+        id="student-data"
+        class="w-full text-sm text-left rtl:text-right text-gray-500"
+      >
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th class="px-6 py-4">Name</th>
+            <th class="px-6 py-4">Gender</th>
+            <th class="px-6 py-4">Course</th>
+            <th class="px-6 py-4">Action</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white border-b dark:bg-gray-800"></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
