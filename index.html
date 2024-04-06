@@ -1,124 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <form
-      onsubmit="submitData();return false;"
-      id="student-form"
-      class="px-8 flex flex-col gap-4 mb-8"
-    >
-      <div>
-        <label class="text-xl text-red-500">First Name</label>
-        <input
-          type="text"
-          id="first_name"
-          name="first_name"
-          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
-        />
-      </div>
-      <div>
-        <label class="text-xl text-red-500">Last Name</label>
-        <input
-          type="text"
-          id="last_name"
-          name="last_name"
-          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
-        />
-      </div>
-      <div>
-        <label class="text-xl text-red-500">Gender</label>
-        </div>
-        <div class="col">
-          <div>
-            <input
-              type="radio"
-              id="male"
-              name="program"
-              value="Male"
-              class="w-4 h-4"
-            />
-            <label for="male" class="text-lg">Male</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="female"
-              name="program"
-              value="Female"
-              class="w-4 h-4"
-            />
-            <label for="female" class="text-lg">Female</label>
-      
-      </div>
-        </div>
-    <div>
-        <label class="text-xl text-red-500">Age (Range)</label>
-        <input
-          type="text"
-          id="age_first"
-          name="age_first"
-          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
-        />
-        <p>to</p>
-        <input
-          type="text"
-          id="age_last"
-          name="age_last"
-          class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
-        />
-      </div>
-      <div>
-      <label class="text-xl text-red-500">Position</label>
-      <select
-        id="position"
-        name="position"
-        class="block border-2 rounded-lg bg-gray-100 p-2 mt-2"
-      >
-        <option value="Student">Student</option>
-        <option value="Teacher">Teacher</option>
-      </select>
-    </div>
-      
-    <input
-        type="submit"
-        value="Add Student"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer"
-      />
-    </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATA TABLE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+</head>
 
-    <p>You selected: <span id="data-selected"></span></p>
-    <input
-      type="text"
-      placeholder="Search something..."
-      id="student-search"
-      class="border-2 rounded-lg bg-gray-100 p-2"
-      oninput="filterStudents()"
-    />
+<body class="bg-violet-500 flex flex-col items-center">
 
-    <div class="flex justify-center">
-      <table
-        id="student-data"
-        class="w-full text-sm text-left rtl:text-right text-gray-500"
-      >
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-          <tr>
-            <th class="px-6 py-4">Name</th>
-            <th class="px-6 py-4">Gender</th>
-            <th class="px-6 py-4">Course</th>
-            <th class="px-6 py-4">Action</th>
-          </tr>
-        </thead>
-        <tbody class="bg-white border-b dark:bg-gray-800"></tbody>
-        <tfoot></tfoot>
-      </table>
+    <h1 class="content-between">DATA TABLE</h1>
+    <h2>INPUT FORM</h2>
+
+    <!-- INPUT FORM -->
+    <div class="backdrop-brightness-50 bg-white/30 w-80 rounded-lg shadow-xl p-8">
+        <form id="inputForm" class="items-center">
+
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName"><br><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName"><br><br>
+
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age"><br><br>
+
+            <label for="position">Position:</label>
+            <select id="position" name="position">
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select><br><br>
+
+            <button type="button" onclick="addRow()">Add to Table</button>
+        </form>
     </div>
 
-    <script src="./script.js"></script>
-  </body>
+    <br>
+
+    <!-- FILTER SECTION -->
+    <h2>FILTER</h2>
+    <div class="flex gap-5">
+        <div class="backdrop-brightness-50 bg-white/30 w-1/2 rounded-lg shadow-xl p-8">
+            <label for="searchInput">Search by Name:</label>
+            <input type="text" id="searchInput" placeholder="Search for Full Name..." onkeyup="filterTable()">
+            <br><br>
+
+            <label>Gender:</label>
+            <input type="radio" id="maleFilter" name="genderFilter" value="male" onclick="filterTable()">
+            <label for="maleFilter">Male</label>
+            <input type="radio" id="femaleFilter" name="genderFilter" value="female" onclick="filterTable()">
+            <label for="femaleFilter">Female</label><br><br>
+
+            <label>Position:</label>
+            <input type="radio" id="teacherFilter" name="positionFilter" value="teacher" onclick="filterTable()">
+            <label for="teacherFilter">Teacher</label>
+            <input type="radio" id="studentFilter" name="positionFilter" value="student" onclick="filterTable()">
+            <label for="studentFilter">Student</label><br><br>
+
+            <label for="ageMin">Age Range:</label>
+            <input type="number" id="ageMin" placeholder="Min Age" onkeyup="filterTable()"> -
+            <input type="number" id="ageMax" placeholder="Max Age" onkeyup="filterTable()">
+        </div>
+
+        <!-- TABLE -->
+        <div>
+            <table id="dataTable" class="border-collapse border border-slate-500">
+                <tr>
+                    <th class="border border-slate-600">Full Name</th>
+                    <th class="border border-slate-600">Gender</th>
+                    <th class="border border-slate-600">Age</th>
+                    <th class="border border-slate-600">Position</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="datatable.js"></script>
+</body>
+
 </html>
